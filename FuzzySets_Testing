@@ -1,0 +1,141 @@
+from matplotlib.pyplot import figure
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+import os
+
+NODES = 3
+
+YEARS = [ 1991,	1995,	2000,	2005,	2010,	2011,	2012,	2013,	2014,	2015,	2016,	2017,	2018,	2019,	2020,	2021,	2022 ]
+
+# Y = States
+Y_DICT = {
+  0: 'Baja California Sur', 1: 'Tabasco', 2: 'Tamaulipas', 3: 'Campeche', 4: 'Guanajuato', 5: 'Aguascalientes', 6: 'Nuevo León', 7: 'Colima', 8: 'Yucatán',
+  9: 'Sonora', 10: 'Sinaloa', 11: 'Querétaro', 12: 'San Luis Potosí', 13: 'Coahuila', 14: 'Quintana Roo', 16: 'Nayarit', 17: 'Zacatecas', 18: 'Baja California',
+  19: 'Hidalgo', 20: 'Morelos', 21: 'Veracruz', 22: 'Guerrero', 23: 'Oaxaca', 24: 'Tlaxcala', 25: 'Durango', 26: 'Chiapas', 27: 'Puebla', 28: 'Jalisco',
+  29: 'Chihuahua', 30: 'Michoacán', 31: 'Ciudad de México', 32: 'México'
+}
+
+# Z = Number of fires per State
+FIRES_PER_STATE = [
+[ 4,	  2,	  2,	  4,	  17,	  5,	  9,	  31,	    24,	  37,	  15,	  14,	  3,	  3,	  4,	  5,	  4 ],    # Baja California Sur
+[ 11,	  15, 	18,	  32,	  45, 	6,	   5,	   23,	  8,	  26,	  23,	  20, 	45,	  50,  	27,	  12,	  13 ],   # Tabasco
+[ 30,	  27,	  29,	  27,	  16,	  73,	   12,	 26,	  11,	  5,	  13,	  17,	  19,	  32,	  13,	  25,	  23 ],   # Tamaulipas
+[ 97,	  77,	  54,	  37,	  19,	  34,	  6,	  18,	    5,	  28,	  21,	  29,	  3,	  15,	  21,	  5,	  13 ],   # Campeche
+[ 49,	  35, 	69,	  41,	  8,	  66,  	18,	  25,	    15,	  9,	  46,	  54,	  50,	  34,	  24,	  25,	  43 ],   # Guanajuato
+[ 13,	  12,	  8,	  28,	  8,	  18,	  14,	  42,	    33,	  28,	  104,	79,	  46,	  85,	  18,	  37,	  53 ],   # Aguascalientes
+[ 24,	  48,	  67,	  38,	  30,	  98,	   53,	 30,	  13,	  13,  	54,	  47,	  44,	  42,	  44,	  51,	  19 ],   # Nuevo León
+[ 19,	  66,	  31,	  60,	  36,	  17,	  34,	  65,	    17,	  11,	  81,	  84,	  54,	  55,	  33,	  38,	  48 ],   # Colima
+[ 69,	  16,	  43,	  82,	  34,	  61,	   16,	 46,	  9,	  34,	  155,	103,	46, 	22, 	26, 	15, 	20 ],   # Yucatán
+[ 23,	  29,	  87,	  29,	  21, 	66,	   53,   51,	  35,	  31, 	77,	  76,	  61, 	63,	  39,	  31, 	50 ],   # Sonora
+[ 78,	  76,	  130,	57,	  51,	  78,	   58,   47,	  26,	  16,	  30,	  46,	  54, 	17,	  23,	  23, 	29 ],   # Sinaloa
+[ 32,	  61,	  61,  	116,	35, 	129,	 34,	 91,	  16,	  7,  	40,	  36,	  36,	  73,	  38,	  51,	  26 ],   # Querétaro
+[ 86,	  109,	125,	74,	  43,	  136,	 33,   65,	  13,	  18,	  86,	  84,	  56, 	65,	  67,	  78, 	83 ],   # San Luis Potosí
+[ 37,	  58,	  54,	  116,	68,	  162,  92,	  20,	    55,	  32,	  101,	154,	86,	  68,	  76,	  53,	  68 ],   # Coahuila
+[ 177,	137,	172,	150,	78,	  132,	 56,   71,	  40, 	81,	  41,	  64,	  50, 	59,	  68,	  33, 	43 ],   # Quintana Roo
+[ 124,	45,	  67,	  135,	100,	155,	143,	100,	  36,	  57,  	105,	110,	83,	  69,	  70,	  103,	73 ],   # Nayarit
+[ 57, 	75, 	100,	279,	52, 	133, 	 90,	 60,	  33,	  42,	  130,	129,	91, 	96,	  44,	  92,	  85 ],   # Zacatecas  
+[ 35,	  63,	  93,	  374,	237,	304,	232,	208,	  102,	95,	  132,	193,	78,	  102,	141,	79,	  12 ],   # Baja California
+[ 106,	136,	106,	196,	84,	  342,	149,	445,	  116,	30,	  384,	303,	101,	139,	75,	  70,	  151 ],  # Hidalgo
+[ 403,	228,	266,	182,	140,	242,	148,	152,	  108,	106,	198,	228,	148,	178,	116,	154,	194 ],  # Morelos
+[ 212,	148,	84,	  199,	200,	417,	 131,	 228,	  181,	130,	183,	238,	144,	230,	120,	158,	250 ],  # Veracruz
+[ 414,	214,	401,	207,	186,	138,	162,	188,	  81,	  147,	136,	248,	294,	268,	255,	198,	179 ],  # Guerrero
+[ 114,	147,	227,	298,	227,	334,	 216,	 378,	  243,	263,	278,	268,	174,	253,	199,	151,	112 ],  # Oaxaca
+[ 99,	  146,	158,	223,	161,	404,	 208,	 296,	  185,	157,	402,	376,	266,	303,	181,	275,	113 ],  # Tlaxcala
+[ 558,	371,	349,	237,	60,	  249,	270,	231,	  199,	68,   254,	509,	325,	252,	245,	270,	250 ],  # Durango
+[ 234,	150,	307,	461,	285,	332,	253,	422,	  179,	320,	417,	390,	347,	454,	319,	278,	372 ],  # Chiapas
+[ 241,	204,	205,	403,	316,	646,	 402,	 511,	  335,	156,	456,	519,	371,	353,	268,	313,	317 ],  # Puebla
+[ 235,	437,	456,	717,	192,	646,	615,	710,	  442,	364,	991,	759,	526,	587,	630,	1031,	919 ],  # Jalisco
+[ 320,	692,	1258,	646,	687,	1687,	1479,	1137,	  818,	252,	702,	808,	778,	702,	430,	657,	424 ],  # Chihuahua
+[ 1381,	755,	777,	1195,	718,	1211,	896,	1180,	  487,	225,	826,	808,	621,	722,	613,	636,	570 ],  # Michoacán
+[ 1397,	1406,	601,	1261,	863,	1373,	394,	1159,	  584,	502,	458,	653,	590,	544,	590,	896,	704 ],  # Ciudad de México
+[ 1942,	1875,	2152,	1805,	1108,	2419,	1001,	2350,	  876,	519,	1483,	1450,	1380,	1475,	1096,	1494,	1045 ], # México
+]
+
+def getGraphVectors():
+  y = np.vstack([*range(0, len(Y_DICT), 1)])
+  z = np.array(FIRES_PER_STATE)
+  
+  x = np.concatenate((np.array(YEARS), np.array([1 for _ in range(0, len(Y_DICT)-len(YEARS))])), axis=None)
+
+  return x, y, z
+
+def plot3DGraph(x, y, z):
+  fig2 = plt.figure()
+  ax = Axes3D(fig2)
+  ax.plot_wireframe(x, y, z)
+  plt.draw()
+  plt.show()
+
+def getFuzzySetVector(coefs):
+  a = b = 0
+  mfyList, m, de = ([] for _ in range(3))
+  
+  # Get m4, d4, m5, d5, m6 & d6...
+  index = 0
+  for i in range(3):
+    m = coefs[i+index]
+    de = coefs[i+index+1]
+    mfyList.append(np.exp((-(Y-m)**2)/(2*de**2)))
+    index += 1
+
+  mf = []
+  for i in range(0, (len(coefs)-1-6), 11):
+    mx = coefs[i+6]
+    dex = coefs[i+7] 
+
+    mfx = np.exp((-(X-mx)**2)/(2*dex**2))
+    mf.append(mfx)
+
+    infList = []
+    for mfy in mfyList:
+      infList.append(mfx*mfy)
+    
+    regList = []
+    index = 0
+    for j in range(3):
+      p = coefs[j+i+index+8]
+      q = coefs[j+i+index+9]
+      r = coefs[j+i+index+10]
+      regList.append(infList[j]*(p*X + q + r))
+      index += 2
+
+    b += sum(infList)
+    a += sum(regList)
+  
+  z = a/b
+
+  return [z, mf, mfyList]
+
+# Parameters Definition
+coefficients = [
+  5,   2,         # m4, de4
+  10,  2,         # m5, de5
+  15,  2,         # m6, de6
+  5,   2,         # m1, de1
+  0,   0,   0,    # p1, q1, r1       
+  0,   0,   0,    # p2, q2, r2
+  0,   0,   0,    # p3, q3, r3
+  10,  2,         # m2, de2
+  0,   0,   0,    # p4, q4, r4
+  10,  300, 0,    # p5, q5, r5
+  0,   0,   0,    # p6, q6, r6
+  15,  2,         # m3, de3
+  0,   0,   0,    # p7, q7, r7
+  0,   0,   0,    # p8, q8, r8 
+  0,   0,   0     # p9, q9, r9
+]
+
+X, Y, Z = getGraphVectors()
+
+X = np.linspace(start = 0, stop = 32, num = 32)
+Y = np.vstack(np.linspace(start = 0, stop = 32, num = 32))
+
+[z, mf, mfy] = getFuzzySetVector(coefficients)
+
+#plotMembershipFunctions(mf, mfy)
+# plot3DGraph(X, Y, np.array(FIRES_PER_STATE))
+
+plot3DGraph(X, Y, z)
+
+plt.show(block=True)
