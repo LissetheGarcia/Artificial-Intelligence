@@ -1,0 +1,408 @@
+"""
+Solución subóptima del problema del ajuste de curva haciendo uso de algoritmos genéticos
+"""
+
+from operator import index
+import random
+import matplotlib.pyplot as plt 
+import math
+
+A=8
+B=25
+C=4
+D=45
+E=10
+F=17
+G=35
+
+
+parametros = 7
+numero_poblacion = 150
+porcentaje_seleccion = 5
+seleccion = 10
+porcentaje_mutacion = 25
+
+
+class Curva():
+    #def __init__(self, matriz_probabilidad, codificador):
+    def __init__(self, poblacion):
+        self.matriz_aptitud = []   # Guarda la función de aptitud (error) de cada uno de los codificadores en la población
+        self.poblacion = poblacion # Población inicial
+        self.padres = []           # Almacena a los numero_poblacion/2 padres
+        self.madres = []           # Almacena a las numero_poblacion/2 madres
+        self.error = 0             # Almacena el menor error por generación
+        self.y_referencia = []     # Almacena los valores de y de la función de referencia
+        self.x_referencia = []     # Almacena los valores de x de la función de referencia
+        self.y_hijos = []          # Almacena los valores de y de un codificador de la población
+        self.x_hijos = []          # Almacena los valores de x de un codificador de la población
+        self.mejor = None          # Almacena al mejor codificador por generación
+        self.poblacion_binaria = []
+        self.matriz_errores = []
+    
+        
+    def valor_por_punto_curva(self):
+        for i in range(1, 1001): # Inicio, Fin, Salto
+            x = i/10
+            y= A*(B*math.sin(x/C) + D*math.cos(x/E)) + F *x-G
+            self.x_referencia.append(x)
+            self.y_referencia.append(y)
+    
+            
+    def grafica_referencia(self): 
+        self.valor_por_punto_curva()   
+        plt.scatter(self.x_referencia, self.y_referencia)
+        plt.show()
+    
+    
+    def errores(self):
+        self.matriz_errores = []
+        
+        for i in range(numero_poblacion): 
+            self.x_hijos = []
+            self.y_hijos = []
+                       
+            a = self.poblacion[i][0]/10
+            b = self.poblacion[i][1]/10
+            c = self.poblacion[i][2]/10
+            d = self.poblacion[i][3]/10
+            e = self.poblacion[i][4]/10
+            f = self.poblacion[i][5]/10
+            g = self.poblacion[i][6]/10
+            
+            for j in range(1, 1001): # Inicio, Fin, Salto
+                x = j/10
+                if c == 0 or e == 0:
+                    y = f *x-g   # 77777777777777777777777777777777777
+                    self.x_hijos.append(x)
+                    self.y_hijos.append(y)
+                else:
+                    y= a*(b*math.sin(x/c) + d*math.cos(x/e)) + f*x-g
+                    self.x_hijos.append(x)
+                    self.y_hijos.append(y)
+            #print(f"Y referencia = {self.y_referencia}")
+            #print(f"Y Hijos = {self.y_hijos}")
+            
+            error_total = 0
+            for k in range(len(self.y_referencia)):
+                valor_real = self.y_referencia[k]
+                #print(f"Valor real = {valor_real}")
+                valor_aproximado = self.y_hijos[k]
+                #print(f"Valor aproximado = {valor_aproximado}")
+                error_por_punto = abs(valor_real - valor_aproximado)
+                #print(f"Error por punto = {error_por_punto}")
+                
+                error_total += error_por_punto
+            
+            
+            ###print(f"El error total es: {error_total}")
+            self.matriz_errores.append(error_total)
+                
+            self.poblacion[i].append(error_total)
+            
+        ###print(f"La poblacion con error es: {self.matriz_errores}")
+        
+               
+    def ganador(self, seleccion):
+        min = self.error
+        for b in range(seleccion):
+            n = random.randint(0, len(self.poblacion) - 1)
+            if self.matriz_errores[n] <= min:
+                min = self.error 
+                ###print(f"El minimo es = {min}")
+                
+        self.error = self.matriz_errores[n]
+        self.mejor = self.poblacion[n]   #777777777777777777777777777
+            
+        ###print(f"N = {n}")
+        ###print(f"Error = {self.error}")
+        ###print(f"Mejor = {self.mejor}")
+            
+            
+    # Selecciona 50 padres al azar, siempre y cuando la funcion de aptitud sea la menor de un grupo de 5 contrincantes
+    def torneo_padres(self, longitud):
+        self.padres = []
+        while len(self.padres) < longitud:
+            n = random.randint(0, numero_poblacion-1)
+            ###print(f"Longitud Matriz Aptitud = {len(self.matriz_aptitud)}")
+            for i in range(porcentaje_seleccion):
+                if self.matriz_errores[n] <= self.error:
+                ###if self.matriz_errores[n] <= random.random() * 1000000:
+                    mejor_padre = self.poblacion_binaria[n]   #777777777777777777777777777777
+                    self.padres.append(mejor_padre)
+                else: 
+                    continue
+                    
+        ###print(f"Padres {len(self.padres)} Ganadores: \n {self.padres}")
+     
+    # Selecciona 50 madres alazar, siempre y cuand la funcion de aptitud sea menor a un determinado número aleatorio    
+    def torneo_madres(self, longitud):
+        self.madres = []
+        while len(self.madres) < longitud:
+            n = random.randint(0, numero_poblacion-1)
+            for i in range(porcentaje_seleccion):
+                if self.matriz_errores[n] <= self.error:
+                ###if self.matriz_errores[n] <= random.random() * 1000000:
+                    mejor_madre = self.poblacion_binaria[n]
+                    self.madres.append(mejor_madre)
+                else: 
+                    continue
+                    
+        ###print(f"Madres {len(self.madres)} Ganadoras: \n {self.madres}")
+        
+    def cambio_binario(self):
+        self.poblacion_binaria = []
+        
+        for i in range(numero_poblacion):
+            cromosoma_binario = []
+            for j in range(parametros):
+                bits = []
+                codificador = [0, 0, 0, 0, 0, 0, 0, 0]
+                decimal = self.poblacion[i][j]
+                ###print(f"El decimal es = {decimal}")
+                while decimal != 0:
+                    bits.insert(0, decimal % 2)   # Se almacena el módulo en el orden correcto
+                    decimal //= 2
+                ###print(f"Bits = {bits}")
+                l = 0 
+                while l < len(bits):
+                    codificador[len(bits) - l - 1] = bits[l]
+                    l += 1
+                codificador.reverse()
+                ###print(f"El codificador es: {codificador}")
+                cromosoma_binario.extend(codificador)
+                ###print(f"Cromosoma binario = {cromosoma_binario}")
+                ###print(f"len cromo bin = {len(cromosoma_binario)}")
+            self.poblacion_binaria.append(cromosoma_binario)
+        ###print(f"La población binaria es: {self.poblacion_binaria}")
+                 
+    # Genera con un padre y una madre que intercambian sus partes altas a dos hijos
+    def generacion_hijos(self, longitud):
+        hijos = []
+        
+        for i in range(longitud):
+            hijo_1 = []
+            hijo_2 = []
+            parte_alta_1 = []
+            parte_alta_2 = []
+            parte_baja_1 = []
+            parte_baja_2 = []
+            
+            padre = self.padres[i]
+            ###print(f"El padre es: {padre}")
+            madre = self.madres[i]
+            ###print(f"La madre es: {madre}")
+            corte = random.randint(1, 54)
+            ###print(f"El corte es: {corte}")
+            
+            parte_alta_1 = padre[:corte]
+            ###print(f"Parte alta_1 = {parte_alta_1}")
+            parte_alta_2 = madre[:corte]
+            ###print(f"Parte alta_2 = {parte_alta_2}")
+            parte_baja_1 = padre[corte:]
+            ###print(f"Parte baja_1 = {parte_baja_1}")
+            parte_baja_2 = madre[corte:]
+            ###print(f"Parte baja_2 = {parte_baja_2}")
+            
+            hijo_1.extend(parte_alta_1)
+            hijo_1.extend(parte_baja_2)
+            ###print(f"El hijo 1 {len(hijo_1)} es : {hijo_1}")
+            #hijo_2 = parte_alta_2 + parte_baja_1
+            hijo_2.extend(parte_alta_2)
+            hijo_2.extend(parte_baja_1)
+            ###print(f"El hijo 2 {len(hijo_2)} es : {hijo_2}")
+            hijos.append(hijo_1)
+            hijos.append(hijo_2)
+
+        for l in range(porcentaje_mutacion):
+            mutado = random.randint(0, numero_poblacion-1)
+            ###print(f"mutado = {mutado}")
+            hijo = hijos[mutado]
+            hijo_mutado = self.mutacion(hijo)
+            hijos[mutado] = hijo_mutado
+            
+        
+        aux_poblacion = []
+        
+        for j in range(len(hijos)):
+            aux_cromosoma = []
+            ###print(f"Longitud = {len(hijos[j])}")
+            ###print(f"codificador = {hijos[j]}")
+            
+            a = (hijos[j][0])*(2**7)+(hijos[j][1])*(2**6)+(hijos[j][2])*(2**5)+(hijos[j][3])*(2**4)\
+                +(hijos[j][4])*(2**3)+(hijos[j][5])*(2**2)+(hijos[j][6])*(2**1)+(hijos[j][7])*(2**0)
+            if a == 0:
+                a = random.randint(1, 255)
+            b = (hijos[j][8])*(2**7)+(hijos[j][9])*(2**6)+(hijos[j][10])*(2**5)+(hijos[j][11])*(2**4)\
+                +(hijos[j][12])*(2**3)+(hijos[j][13])*(2**2)+(hijos[j][14])*(2**1)+(hijos[j][15])*(2**0)
+            if b == 0:
+                b = random.randint(1, 255)
+            c = (hijos[j][16])*(2**7)+(hijos[j][17])*(2**6)+(hijos[j][18])*(2**5)+(hijos[j][19])*(2**4)\
+                +(hijos[j][20])*(2**3)+(hijos[j][21])*(2**2)+(hijos[j][22])*(2**1)+(hijos[j][23])*(2**0)
+            if c == 0:
+                c = random.randint(1, 255)
+            d = (hijos[j][24])*(2**7)+(hijos[j][25])*(2**6)+(hijos[j][26])*(2**5)+(hijos[j][27])*(2**4)\
+                +(hijos[j][28])*(2**3)+(hijos[j][29])*(2**2)+(hijos[j][30])*(2**1)+(hijos[j][31])*(2**0)
+            if d == 0:
+                d = random.randint(1, 255)
+            e = (hijos[j][32])*(2**7)+(hijos[j][33])*(2**6)+(hijos[j][34])*(2**5)+(hijos[j][35])*(2**4)\
+                +(hijos[j][36])*(2**3)+(hijos[j][37])*(2**2)+(hijos[j][38])*(2**1)+(hijos[j][39])*(2**0)
+            if e == 0:
+                e = random.randint(1, 255)
+            f = (hijos[j][40])*(2**7)+(hijos[j][41])*(2**6)+(hijos[j][42])*(2**5)+(hijos[j][43])*(2**4)\
+                +(hijos[j][44])*(2**3)+(hijos[j][45])*(2**2)+(hijos[j][46])*(2**1)+(hijos[j][47])*(2**0)
+            if f == 0:
+                f = random.randint(1, 255)
+            g = (hijos[j][48])*(2**7)+(hijos[j][49])*(2**6)+(hijos[j][50])*(2**5)+(hijos[j][51])*(2**4)\
+                +(hijos[j][52])*(2**3)+(hijos[j][53])*(2**2)+(hijos[j][54])*(2**1)+(hijos[j][55])*(2**0)   
+            if f == 0:
+                f = random.randint(1, 255)   
+
+            aux_cromosoma.append(a)
+            aux_cromosoma.append(b)
+            aux_cromosoma.append(c)
+            aux_cromosoma.append(d)
+            aux_cromosoma.append(e)
+            aux_cromosoma.append(f)
+            aux_cromosoma.append(g)
+            
+            ###print(f"El cromosoma codificado es:: {aux_cromosoma}")
+            aux_poblacion.append(aux_cromosoma)
+        ###print(f"La poblacion codificada es : {aux_poblacion}")
+        
+        return aux_poblacion
+    
+            
+    def mutacion(self, hijo):
+        negacion = random.randint(0, 55)
+        if hijo[negacion] == 0:
+            hijo[negacion] = 1
+        else:
+            hijo[negacion] = 0 
+        
+        return hijo
+        
+        
+    def negacion_alelo(self, hijo):
+        n = random.randint(0, parametros-1)
+        for i in range(parametros):
+            if hijo[i][n] == 0:
+                hijo[i][n] == 1
+            else:
+                hijo[i][n] == 0
+            
+    # Ejecuta 100 generaciones
+    def algoritmo_genetico(self, poblado, parametros=7, numero_poblacion=150, generaciones=100\
+        ,intervalo_impresion=100,return_history=True, verbose=False,): 
+        
+        poblacion = Curva(poblado)  # Se c rea una instancia de la clase Curva()
+        mejor = self.mejor          # Trae al mejor codificador de cada generacion
+        error = float("inf")        # Trae a la funcion de aptitud (error) menor encontrado por generación
+        history = []                # Almacena los valores del error de cada individuo por generación
+        y_1 = []
+        x_1 = []
+        self.poblacion = poblado
+        self.valor_por_punto_curva()
+         
+        ###print(f"Poblado es: \n{poblado}")
+        for i in range(generaciones):   # Ciclo for que ejecuta los 100 torneos
+            self.errores()
+            self.ganador(seleccion)
+            history.append(self.error)
+            if verbose:
+                print(f"Generacion {i}: {self.error}")
+            elif i % intervalo_impresion == 0:
+                print(f"Generacion {i}: {self.error}")
+            if self.error < error:
+                mejor = self.mejor
+                error = self.error
+            ###hijos = []
+            self.cambio_binario()
+            ###print(f"Len binarios = {len(self.poblacion_binaria)}")
+            self.torneo_padres(longitud = int(numero_poblacion/2))
+            self.torneo_madres(longitud = int(numero_poblacion/2))
+            ###hijos = self.mutacion(porcentaje_mutacion=0.03)
+            hijos = self.generacion_hijos(longitud = int(numero_poblacion/2))
+            self.poblacion = hijos 
+                
+            ###self.ajuste_curva(self.mejor, x_1, y_1, i, self.error)
+        
+            x_1.append(i)
+            y_1.append(error) 
+            self.ajuste_curva(self.mejor, x_1, y_1, i, self.error)
+            
+                   
+        if return_history:
+            return mejor, history
+        return mejor
+    
+    
+    # Va graficando el ajuste de curva y el error
+    def ajuste_curva(self, mejor, x_1, y_1, generacion, error):
+        x = []
+        y = []
+        
+        ###print(f"El mejor en la grafica = {mejor}")
+        ###print(f"El mejor error en la grafica = {error}")
+        a = mejor[0]/10
+        b = mejor[1]/10
+        c = mejor[2]/10
+        d = mejor[3]/10
+        e = mejor[4]/10
+        f = mejor[5]/10
+        g = mejor[6]/10
+        ###print(f"a={a}, b={b}, c={c}, d={d}, e={e}, f={f}, g={g}")
+                  
+        for i in range(1, 1001): # Inicio, Fin, Salto
+            x_v = i/10
+            if c == 0 or e == 0:
+                y_v = f *x_v-g
+                x.append(x_v)
+                y.append(y_v)
+            else: 
+                y_v = a*(b*math.sin(x_v/c) + d*math.cos(x_v/e)) + f *x_v-g
+                x.append(x_v)
+                y.append(y_v)
+
+        plt.subplot(1, 2, 1)
+        plt.scatter(self.x_referencia, self.y_referencia)
+        plt.plot(x, y, "r--", mfc="r", mec = "r")
+        plt.xlabel(f"(X)\n Codificador : a={a} | b={b} | c={c} | d={d} | e={e} | f={f} | g={g}")
+        plt.ylabel("(Y)")
+        plt.title("Ajuste de curva")
+        plt.suptitle(f"Ajuste de Curva Usando un Algoritmo Genético\n  Generación {generacion} : {error}")
+        plt.grid()
+        
+        plt.subplot(1, 2, 2)
+        plt.plot(x_1, y_1, "ob--", mfc="r", mec = "r")
+        plt.xlabel(f"(X) Generación")
+        plt.ylabel("(Y) Individuo más apto de cada generación")
+        plt.title("Función de aptitud (error) por generación")
+        plt.grid()
+        plt.show(block=False) #Evito que el form bloquee el script.
+        plt.pause(0.05) #Espero 0.1 segundos.
+        plt.clf()
+        plt.cla()
+        
+
+# Crea una población inicial de 100 individuos con 7 bits cada uno, de manera aleatoria
+def poblacion_inicial(numero_poblacion):
+    poblacion = []
+    
+    for p in range(numero_poblacion):
+        cromosoma = []
+        for k in range(parametros):
+            parametro = random.randint(1, 255)
+            cromosoma.append(parametro)
+            ###print(f"El cromosoma {i} es: {cromosoma}")
+        poblacion.append(cromosoma)
+        
+    return poblacion
+
+poblacion = poblacion_inicial(numero_poblacion)
+###print(f"La población inicial es: \n {poblacion}")
+
+# Instancia la clase curva 
+c = Curva(poblacion)
+best, history = c.algoritmo_genetico(poblacion, parametros=7, numero_poblacion=150, generaciones=100,\
+    intervalo_impresion=100,return_history=True, verbose=False,)
+
