@@ -44,16 +44,13 @@ Every chromosome is labeled with the aptitude function, then is randomly chosen 
 
 Crossover reproduction is applied.
 
+![image](https://user-images.githubusercontent.com/109912046/189812012-64d3f720-1ff4-41f6-9190-f9d755a450ca.png)
+
 # Mutation
 
 Bit mutation is applied
 
 ![image](https://user-images.githubusercontent.com/109912046/189812124-08c9cd21-ab19-49ea-9066-c637e6dc59c7.png)
-
-
-![image](https://user-images.githubusercontent.com/109912046/189812012-64d3f720-1ff4-41f6-9190-f9d755a450ca.png)
-
-
 
 # Curve fitting video 
 
