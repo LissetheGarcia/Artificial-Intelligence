@@ -2,9 +2,6 @@
 ; Division_entrada 16 bits_salida 24 bits.asm
 ;
 ; Created: 07/09/2019 03:19:42 p. m.
-; Author : Villarruel Ramírez, Luis Fabián
-; Author : Torres Ramos, Javier Alejandro
-; Author : García Santoyo, Lissethe Alejandra
 
 
  		.equ num=0x101
@@ -27,7 +24,7 @@ loop:
 			cp r5,r4            ; Compara el numerador con el denominador
 			brlt menor
 			;nop
-			inc r17             ; Incrementa el número de ciclo, lo cual usaremos para obtener el cociente y el residuo
+			inc r17             ; Incrementa el nÃºmero de ciclo, lo cual usaremos para obtener el cociente y el residuo
 			sub r5,r4           ; Al numerador se substrae n veces el denominador
 			sts res,r5          ; Guarda el resultado de la resta en res, que es el residuo
 			cp  r4,r5           ; Compara el numerador con el denominador
