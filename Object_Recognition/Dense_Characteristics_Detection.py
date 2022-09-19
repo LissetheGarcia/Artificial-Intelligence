@@ -1,8 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Capítulo 10:"Reconocimiento de objetos"
-# Archivo: "programa_1_17110106.py"
-
 # Detector de características densas
 
 import cv2
