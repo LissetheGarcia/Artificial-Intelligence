@@ -1,0 +1,48 @@
+# García Santoyo, Lissethe Alejandra 17110106
+# Sistemas de visión artificial y procesamiento de imágenes
+# Chapter 3:"Cartoonizing an image"
+# Archive: "programa_3_17110106.py"
+# Vamos a ver cómo usar el mouse para interactuar con la ventana desplegada en pantalla.
+# Escribiremos un programa que detectara el cuadrante en el que el click del mouse fue detectado
+# una vez detectado, iluminamos dicho cuadrante.
+
+# Entradas con el mouse.
+
+import cv2
+import numpy as np
+
+def detect_quadrant(event, x, y, flags, param):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        if x == width / 2 :
+            point_top_left = (int(width/2), int(height/2))
+            point_bottom_right = (width - 1, height -1)
+        else:
+            point_top_left = (int(width/2), 0)
+            point_bottom_right = (width - 1, int(height/2))
+    else:
+        if y > height/2:
+            point_top_left = (0, int(height/2))
+            point_bottom_right = (int(width/2), height - 1)
+        else:
+            point_top_left = (0, 0)
+            point_bottom_right = (int(width/2), int(height/2))
+            
+    cv2.rectangle(img, (0, 0), (width - 1, height - 1), (255, 255, 255), -1)
+    cv2.rectangle(img, point_top_left, point_bottom_right, (0, 100, 0), -1)
+    
+if __name__ == '__main__':
+    width, height = 640, 480
+    img = 255 + np.ones((height, width, 3), dtype = np.uint8)
+    cv2.namedWindow("Ventana de entrada")
+    cv2.setMouseCallback("Ventana de entrada", detect_quadrant)
+        
+    while True:
+        cv2.imshow("Ventana de entrada", img)
+        c = cv2.waitKey(10)
+        if c == 27:
+            break
+        
+    #cap.release()
+    cv2.destroyAllWindows()
+            
+            
