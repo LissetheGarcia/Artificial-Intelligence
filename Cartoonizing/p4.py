@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 3:"Cartoonizing an image"
-# Archive: "programa_4_17110106.py"
 # Vamos a ver cómo usar el mouse para interactuar con el video mostrado a través de la webcam.
 # Podremos usar el mouse para seleccionar una región y entonces aplicar un filtro negativo.
 
