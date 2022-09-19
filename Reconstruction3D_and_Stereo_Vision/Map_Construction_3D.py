@@ -1,8 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Capítulo 11:"Estereovisión y reconstrución 3D"
-# Archivo: "programa_2_17110106.py"
-
 # Construcción de un mapa 3D
 
 import argparse
