@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 4:"Detectando y rastreando diferentes partes del cuerpo"
-# Archive: "programa_2_17110106.py"
 # OpenCV provee de un buen marco de referencia para la detección de rostros, sólo necesitamos
 # cargar el archivo de cascada y usarlo para detectar caras en una imagen y posteriormente,
 # montar alguna máscara.
