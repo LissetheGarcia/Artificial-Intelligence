@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\practica_2_monitoreo_y_control_de_plantas.X.production.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>2048</length>
+      <used>218</used>
+      <free>1830</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>256</length>
+      <used>13</used>
+      <free>243</free>
+    </memory>
+  </executable>
+</project>
