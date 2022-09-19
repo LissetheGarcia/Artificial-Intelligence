@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 3:"Cartoonizing an image"
-# Archive: "programa_1_17110106.py"
 # El siguiente código abrirá la cámera web, capturará los cuadros y los pondrá a escala con
 # un factor de 2, y entonces, lo mostrará en una ventana. Se puede presionar la tecla Esc para salir.
 
