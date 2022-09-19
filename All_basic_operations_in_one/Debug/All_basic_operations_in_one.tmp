@@ -1,0 +1,29 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m328pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\Debug\Automaticas_Operaciones.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Automaticas_Operaciones.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Automaticas_Operaciones.map</FILE>
+  <FILE>Automaticas_Operaciones.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <menor><FILE>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\main.asm</FILE><LINE>95</LINE></menor>
+  <loop><FILE>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\main.asm</FILE><LINE>99</LINE></loop>
+  <menorEQ><FILE>C:\Users\lisse\Desktop\ATMEL prácticas\Automaticas_Operaciones\Automaticas_Operaciones\main.asm</FILE><LINE>112</LINE></menorEQ>
+ </LABELS>
+</ASSEMBLER_INFO>
