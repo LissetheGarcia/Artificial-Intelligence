@@ -1,8 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 8:"Detectando formas y segmentando una imagen"
-# Archive: "programa_2_17110106.py"
-
 # Formas convexas
 
 import sys
