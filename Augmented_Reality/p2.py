@@ -1,8 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Capítulo 12:"Realidad aumentada"
-# Archivo: "programa_2_17110106.py"
-
 # Aumentando nuestra realidad
 
 import cv2
