@@ -1,8 +1,4 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 4:"Detectando y rastreando diferentes partes del cuerpo"
-# Archive: "programa_3_17110106.py"
-# Un sistema robusto es más fácil de entrenar cuando se quirn detectar objetos o partes con
+# Un sistema robusto es más fácil de entrenar cuando se quire detectar objetos o partes con
 # características únicas, afortunadamente los elementos de la cara son así, en esta sección
 # vamos a desarrollar un programa detector de ojos
 
