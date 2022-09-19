@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 3:"Cartoonizing an image"
-# Archive: "programa_5_17110106.py"
 # Ahora que sabemos manipular la webcam a través de de entradas por medio del teclado o del
 # mouse, vamos a ver cómo convertir una imagen en caricatura bicromática o a color.
 
