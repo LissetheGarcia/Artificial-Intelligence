@@ -1,0 +1,384 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F15313 ]
+[d frameptr 6 ]
+"80 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\main.c
+[e E5939 . `uc
+LIGHT 0
+channel_AVSS 59
+channel_Temp 60
+channel_DAC1 61
+channel_FVR_BUF1 62
+channel_FVR_BUF2 63
+]
+"88 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/tmr2.c
+[e E5857 . `uc
+TMR2_ROP_STARTS_TMRON 0
+TMR2_ROP_STARTS_TMRON_ERSHIGH 1
+TMR2_ROP_STARTS_TMRON_ERSLOW 2
+TMR2_ROP_RESETS_ERSBOTHEDGE 3
+TMR2_ROP_RESETS_ERSRISINGEDGE 4
+TMR2_ROP_RESETS_ERSFALLINGEDGE 5
+TMR2_ROP_RESETS_ERSLOW 6
+TMR2_ROP_RESETS_ERSHIGH 7
+TMR2_OS_STARTS_TMRON 8
+TMR2_OS_STARTS_ERSRISINGEDGE 9
+TMR2_OS_STARTS_ERSFALLINGEDGE 10
+TMR2_OS_STARTS_ERSBOTHEDGE 11
+TMR2_OS_STARTS_ERSFIRSTRISINGEDGE 12
+TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE 13
+TMR2_OS_STARTS_ERSRISINGEDGEDETECT 14
+TMR2_OS_STARTS_ERSFALLINGEDGEDETECT 15
+TMR2_OS_STARTS_TMRON_ERSHIGH 22
+TMR2_OS_STARTS_TMRON_ERSLOW 23
+TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT 17
+TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT 18
+TMR2_MS_STARTS_TMRON_ERSBOTHEDGE 19
+]
+"94
+[e E5880 . `uc
+TMR2_T2INPPS 0
+TMR2_CCP1_OUT 1
+TMR2_CCP2_OUT 2
+TMR2_PWM3_OUT 3
+TMR2_PWM4_OUT 4
+TMR2_PWM5_OUT 5
+TMR2_PWM6_OUT 6
+TMR2_C1_OUT_SYNC 7
+TMR2_C2_OUT_SYNC 8
+TMR2_ZCD_OUTPUT 9
+TMR2_CLC1_OUT 10
+TMR2_CLC2_OUT 11
+TMR2_CLC3_OUT 12
+TMR2_CLC4_OUT 13
+]
+"85 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/adc.c
+[e E5862 . `uc
+LIGHT 0
+channel_AVSS 59
+channel_Temp 60
+channel_DAC1 61
+channel_FVR_BUF1 62
+channel_FVR_BUF2 63
+]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"62 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"75
+[v _setup setup `(v  1 e 1 0 ]
+"92
+[v _loop loop `(v  1 e 1 0 ]
+"67 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+"85
+[v _ADC_SelectChannel ADC_SelectChannel `(v  1 e 1 0 ]
+"93
+[v _ADC_StartConversion ADC_StartConversion `(v  1 e 1 0 ]
+"100
+[v _ADC_IsConversionDone ADC_IsConversionDone `(a  1 e 1 0 ]
+"106
+[v _ADC_GetConversionResult ADC_GetConversionResult `(us  1 e 2 0 ]
+"112
+[v _ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
+"50 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"60
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"76
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+"55 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"58 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/pwm6.c
+[v _PWM6_Initialize PWM6_Initialize `(v  1 e 1 0 ]
+"72
+[v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
+"62 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/tmr2.c
+[v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
+"100
+[v _TMR2_Start TMR2_Start `(v  1 e 1 0 ]
+"111
+[v _TMR2_Stop TMR2_Stop `(v  1 e 1 0 ]
+"122
+[v _TMR2_Counter8BitGet TMR2_Counter8BitGet `(uc  1 e 1 0 ]
+"136
+[v _TMR2_Counter8BitSet TMR2_Counter8BitSet `(v  1 e 1 0 ]
+"147
+[v _TMR2_Period8BitSet TMR2_Period8BitSet `(v  1 e 1 0 ]
+"497 C:/Microchip/packs/Microchip/PIC16F1xxxx_DFP/1.7.146/xc8\pic\include\proc\pic16f15313.h
+[v _TRISA TRISA `VEuc  1 e 1 @18 ]
+[s S50 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+]
+"512
+[u S57 . 1 `S50 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES57  1 e 1 @18 ]
+"542
+[v _LATA LATA `VEuc  1 e 1 @24 ]
+[s S67 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"557
+[u S74 . 1 `S67 1 . 1 0 ]
+[v _LATAbits LATAbits `VES74  1 e 1 @24 ]
+"594
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"664
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+"734
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
+[s S437 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GOnDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+`uc 1 CHS5 1 0 :1:7 
+]
+"755
+[s S446 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CHS 1 0 :6:2 
+]
+[u S449 . 1 `S437 1 . 1 0 `S446 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES449  1 e 1 @157 ]
+"805
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
+"3608
+[v _T2TMR T2TMR `VEuc  1 e 1 @652 ]
+"3613
+[v _TMR2 TMR2 `VEuc  1 e 1 @652 ]
+"3662
+[v _T2PR T2PR `VEuc  1 e 1 @653 ]
+"3667
+[v _PR2 PR2 `VEuc  1 e 1 @653 ]
+"3716
+[v _T2CON T2CON `VEuc  1 e 1 @654 ]
+[s S309 . 1 `uc 1 OUTPS 1 0 :4:0 
+`uc 1 CKPS 1 0 :3:4 
+`uc 1 ON 1 0 :1:7 
+]
+"3752
+[s S313 . 1 `uc 1 OUTPS0 1 0 :1:0 
+`uc 1 OUTPS1 1 0 :1:1 
+`uc 1 OUTPS2 1 0 :1:2 
+`uc 1 OUTPS3 1 0 :1:3 
+`uc 1 CKPS0 1 0 :1:4 
+`uc 1 CKPS1 1 0 :1:5 
+`uc 1 CKPS2 1 0 :1:6 
+]
+[s S321 . 1 `uc 1 T2OUTPS 1 0 :4:0 
+`uc 1 T2CKPS 1 0 :3:4 
+`uc 1 T2ON 1 0 :1:7 
+]
+[s S325 . 1 `uc 1 T2OUTPS0 1 0 :1:0 
+`uc 1 T2OUTPS1 1 0 :1:1 
+`uc 1 T2OUTPS2 1 0 :1:2 
+`uc 1 T2OUTPS3 1 0 :1:3 
+`uc 1 T2CKPS0 1 0 :1:4 
+`uc 1 T2CKPS1 1 0 :1:5 
+`uc 1 T2CKPS2 1 0 :1:6 
+`uc 1 TMR2ON 1 0 :1:7 
+]
+[u S334 . 1 `S309 1 . 1 0 `S313 1 . 1 0 `S321 1 . 1 0 `S325 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES334  1 e 1 @654 ]
+"3862
+[v _T2HLT T2HLT `VEuc  1 e 1 @655 ]
+[s S210 . 1 `uc 1 MODE 1 0 :5:0 
+`uc 1 CKSYNC 1 0 :1:5 
+`uc 1 CKPOL 1 0 :1:6 
+`uc 1 PSYNC 1 0 :1:7 
+]
+"3895
+[s S215 . 1 `uc 1 MODE0 1 0 :1:0 
+`uc 1 MODE1 1 0 :1:1 
+`uc 1 MODE2 1 0 :1:2 
+`uc 1 MODE3 1 0 :1:3 
+`uc 1 MODE4 1 0 :1:4 
+]
+[s S221 . 1 `uc 1 T2MODE 1 0 :5:0 
+`uc 1 T2CKSYNC 1 0 :1:5 
+`uc 1 T2CKPOL 1 0 :1:6 
+`uc 1 T2PSYNC 1 0 :1:7 
+]
+[s S226 . 1 `uc 1 T2MODE0 1 0 :1:0 
+`uc 1 T2MODE1 1 0 :1:1 
+`uc 1 T2MODE2 1 0 :1:2 
+`uc 1 T2MODE3 1 0 :1:3 
+`uc 1 T2MODE4 1 0 :1:4 
+]
+[u S232 . 1 `S210 1 . 1 0 `S215 1 . 1 0 `S221 1 . 1 0 `S226 1 . 1 0 ]
+[v _T2HLTbits T2HLTbits `VES232  1 e 1 @655 ]
+"3990
+[v _T2CLKCON T2CLKCON `VEuc  1 e 1 @656 ]
+"4070
+[v _T2RST T2RST `VEuc  1 e 1 @657 ]
+[s S275 . 1 `uc 1 RSEL 1 0 :4:0 
+]
+"4095
+[s S277 . 1 `uc 1 RSEL0 1 0 :1:0 
+`uc 1 RSEL1 1 0 :1:1 
+`uc 1 RSEL2 1 0 :1:2 
+`uc 1 RSEL3 1 0 :1:3 
+]
+[s S282 . 1 `uc 1 T2RSEL 1 0 :4:0 
+]
+[s S284 . 1 `uc 1 T2RSEL0 1 0 :1:0 
+`uc 1 T2RSEL1 1 0 :1:1 
+`uc 1 T2RSEL2 1 0 :1:2 
+`uc 1 T2RSEL3 1 0 :1:3 
+]
+[u S289 . 1 `S275 1 . 1 0 `S277 1 . 1 0 `S282 1 . 1 0 `S284 1 . 1 0 ]
+[v _T2RSTbits T2RSTbits `VES289  1 e 1 @657 ]
+"5520
+[v _PWM6DCL PWM6DCL `VEuc  1 e 1 @908 ]
+"5586
+[v _PWM6DCH PWM6DCH `VEuc  1 e 1 @909 ]
+"5756
+[v _PWM6CON PWM6CON `VEuc  1 e 1 @910 ]
+[s S178 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+]
+"7768
+[u S181 . 1 `S178 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES181  1 e 1 @1808 ]
+"8167
+[v _PMD0 PMD0 `VEuc  1 e 1 @1942 ]
+"8212
+[v _PMD1 PMD1 `VEuc  1 e 1 @1943 ]
+"8260
+[v _PMD2 PMD2 `VEuc  1 e 1 @1944 ]
+"8299
+[v _PMD3 PMD3 `VEuc  1 e 1 @1945 ]
+"8349
+[v _PMD4 PMD4 `VEuc  1 e 1 @1946 ]
+"8383
+[v _PMD5 PMD5 `VEuc  1 e 1 @1947 ]
+"9445
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2189 ]
+"9585
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2191 ]
+"9619
+[v _OSCSTAT OSCSTAT `VEuc  1 e 1 @2192 ]
+"9671
+[v _OSCEN OSCEN `VEuc  1 e 1 @2193 ]
+"9717
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2194 ]
+"9775
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2195 ]
+"16081
+[v _RA5PPS RA5PPS `VEuc  1 e 1 @7957 ]
+"16125
+[v _ANSELA ANSELA `VEuc  1 e 1 @7992 ]
+"16170
+[v _WPUA WPUA `VEuc  1 e 1 @7993 ]
+"16220
+[v _ODCONA ODCONA `VEuc  1 e 1 @7994 ]
+"16265
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @7995 ]
+"16310
+[v _INLVLA INLVLA `VEuc  1 e 1 @7996 ]
+"51 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\main.c
+[v _adcRawLight adcRawLight `us  1 e 2 0 ]
+"62
+[v _main main `(v  1 e 1 0 ]
+{
+"73
+} 0
+"75
+[v _setup setup `(v  1 e 1 0 ]
+{
+"90
+} 0
+"85 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/adc.c
+[v _ADC_SelectChannel ADC_SelectChannel `(v  1 e 1 0 ]
+{
+[v ADC_SelectChannel@channel channel `E5862  1 a 1 wreg ]
+[v ADC_SelectChannel@channel channel `E5862  1 a 1 wreg ]
+"88
+[v ADC_SelectChannel@channel channel `E5862  1 a 1 1 ]
+"91
+} 0
+"92 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\main.c
+[v _loop loop `(v  1 e 1 0 ]
+{
+"94
+[v loop@dutycycle dutycycle `us  1 a 2 5 ]
+"153
+} 0
+"72 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/pwm6.c
+[v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
+"79
+} 0
+"93 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/adc.c
+[v _ADC_StartConversion ADC_StartConversion `(v  1 e 1 0 ]
+{
+"97
+} 0
+"100
+[v _ADC_IsConversionDone ADC_IsConversionDone `(a  1 e 1 0 ]
+{
+"104
+} 0
+"106
+[v _ADC_GetConversionResult ADC_GetConversionResult `(us  1 e 2 0 ]
+{
+"110
+} 0
+"112
+[v _ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
+{
+[v ADC_GetConversion@channel channel `E5862  1 a 1 wreg ]
+[v ADC_GetConversion@channel channel `E5862  1 a 1 wreg ]
+"115
+[v ADC_GetConversion@channel channel `E5862  1 a 1 3 ]
+"133
+} 0
+"50 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"58
+} 0
+"62 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/tmr2.c
+[v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
+{
+"86
+} 0
+"58 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/pwm6.c
+[v _PWM6_Initialize PWM6_Initialize `(v  1 e 1 0 ]
+{
+"70
+} 0
+"76 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/mcc.c
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+{
+"90
+} 0
+"55 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"100
+} 0
+"60 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"74
+} 0
+"67 C:\Users\lisse\Desktop\mplab_exercises\Practica3_con_PWM.X\mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+{
+"83
+} 0
