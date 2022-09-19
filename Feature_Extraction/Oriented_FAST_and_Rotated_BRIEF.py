@@ -1,9 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 5:"Extrayendo características de una imagen"
-# Archive: "programa_6_17110106.py"
-
-
 # ORB (Oriented FAST and rotated BRIEF)
 
 import cv2
