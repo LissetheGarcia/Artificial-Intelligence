@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 3:"Cartoonizing an image"
-# Archive: "programa_3_17110106.py"
 # Vamos a ver cómo usar el mouse para interactuar con la ventana desplegada en pantalla.
 # Escribiremos un programa que detectara el cuadrante en el que el click del mouse fue detectado
 # una vez detectado, iluminamos dicho cuadrante.
