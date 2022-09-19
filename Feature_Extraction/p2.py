@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 5:"Extrayendo características de una imagen"
-# Archive: "programa_2_17110106.py"
 # usaremos el algoritmo de deteción de esquinas "Harris Corner Detector". Un punto de esquina
 # es donde ambos eigenvalores tendrían valores grandes.
 
