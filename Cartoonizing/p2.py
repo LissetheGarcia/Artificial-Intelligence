@@ -1,7 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 3:"Cartoonizing an image"
-# Archive: "programa_2_17110106.py"
 # Ahora que sabemos capturar en pantalla un video en vivo desde la cámara web, vamos a ver
 # cómo usar el teclado para interactuar con la ventana del video en vivo.
 
