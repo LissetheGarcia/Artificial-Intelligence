@@ -1,8 +1,3 @@
-# García Santoyo, Lissethe Alejandra 17110106
-# Sistemas de visión artificial y procesamiento de imágenes
-# Chapter 9:"Seguimiento de objetos"
-# Archive: "programa_2_17110106.py"
-
 # Seguimiento basado en el espacio de color
 
 import cv2
